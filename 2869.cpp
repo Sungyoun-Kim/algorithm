@@ -16,4 +16,6 @@ int main()
     result2=result2+1;
     
     cout<<result2;
+
+    
 }
