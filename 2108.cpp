@@ -17,21 +17,19 @@ int main()
     int value[number];
    
     for(int i=0;i<number;i++)
-
     {
         cin>>value[i];
     }
-    sort(value,value+number);
-    
+    sort(value,value+number); // 정렬 
     for(int i=0;i<number;i++)
     {
         avg=avg+value[i];
     }
-    vector<int> a(value,value+number);
-    a.erase(unique(a.begin(),a.end()),a.end());
-    int frequent[a.size()]={};
+    vector<int> a(value,value+number); // 정렬된 value 배열로 a라는 벡터 생성 
+    a.erase(unique(a.begin(),a.end()),a.end()); // 중복값 제거 
+    int frequent[a.size()]={}; // 중복제거한 사이즈와 같은 배열만들어줌 ( 인덱스는 같은데 값 0으로 초기화) 
 
-for(int i=0;i<a.size();i++)
+for(int i=0;i<a.size();i++) // 중복제거안된 value랑 중복 제거된 a랑 비교하면서 일치하는것 찾을때마다 카운팅
 {
     for(int j=0;j<number;j++)
     {
@@ -39,20 +37,19 @@ for(int i=0;i<a.size();i++)
         frequent[i]++;
     }
 }
-for(int i=1;i<a.size();i++)
+
+for(int i=1;i<a.size()-1;i++)
 {
-if(i+1>a.size()){
-break;
-}
-    if(frequent[i-1]<frequent[i])
+
+
+    if(frequent[max]<frequent[i])
     max=i;
 
+
 }
-for(int i=1; i<a.size();i++)
+for(int i=1; i<a.size()-max;i++) // 큰거 찾은 후에 , 큰거중에 2번쨰 최빈값 인덱스 잇으면 찾기 (찾으면 break)
 {
-    if(max+i>a.size()){
-break;
-    }
+
 
     if(frequent[max]<=frequent[max+i])
     {
